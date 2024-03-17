@@ -2,7 +2,8 @@ const config = {
   env: process.env.NODE_ENV || 'development',
   port: process.env.PORT || 3000,
   jwtSecret: process.env.JWT_SECRET || "YOUR_secret_key",
-  mongoUri: process.env.MONGODB_URI || "need to add here" ||
+  //mongoUri: process.env.MONGODB_URI || "mongodb+srv://Blessing1:Xtgx5dQyshCeSxmz@cluster0.yzmbjfl.mongodb.net/Skeleton?retryWrites=true&w=majority"||  
+  mongoUri: process.env.MONGODB_URI || "mongodb+srv://isaacebiniyi123:XDZIsHHXGJSRxoaK@cluster0.fwkrkkd.mongodb.net/"||  
     process.env.MONGO_HOST ||
     'mongodb://' + (process.env.IP || 'localhost') + ':' +
     (process.env.MONGO_PORT || '27017') +

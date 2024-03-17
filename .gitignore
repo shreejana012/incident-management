@@ -23,3 +23,8 @@ dist-ssr
 *.sw?
 /server_bak0.js
 /package_bak0.json
+.vs/incident-management/FileContentIndex/3e959520-bd5e-41fd-93a3-baed2762d619.vsidx
+client/package_bak0.json
+.vs/incident-management/v17/.wsuo
+.vs/incident-management/v17/TestStore/0/000.testlog
+.vs/incident-management/v17/TestStore/0/testlog.manifest
