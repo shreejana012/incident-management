@@ -3,6 +3,7 @@ import extend from 'lodash/extend.js'
 import errorHandler from './error.controller.js'
 
 const create = async (req, res) => { 
+    console.log("create:");
     const incident = new Incident(req.body) 
     try {
         await incident.save()
@@ -17,7 +18,8 @@ const create = async (req, res) => {
     } 
 }
 
-const list = async (req, res) => { 
+const list = async (req, res) => {
+    console.log("list:"); 
     try {
         let incidents = await Incident.find().select('name email updated created') 
         res.json(incidents)
@@ -81,12 +83,14 @@ const incidentByID = async (req, res, next, id) => {
 }
 
 const read = (req, res) => {
-    req.profile.hashed_password = undefined 
-    req.profile.salt = undefined
+console.log("read incident")
+    //req.profile.hashed_password = undefined 
+    //req.profile.salt = undefined
     return res.json(req.profile) 
 }
 
 const update = async (req, res) => { 
+console.log("update incident")
 try {
     let incident = req.profile
     incident = extend(incident, req.body) 
@@ -103,11 +107,12 @@ try {
 }
 
 const remove = async (req, res) => { 
+    console.log("remove incident");
     try {
         let incident = req.profile
         let deletedIncident = await incident.deleteOne() 
-        deletedIncident.hashed_password = undefined 
-        deletedIncident.salt = undefined
+        //deletedIncident.hashed_password = undefined 
+        //deletedIncident.salt = undefined
         res.json(deletedIncident) 
     } catch (err) {
         return res.status(400).json({

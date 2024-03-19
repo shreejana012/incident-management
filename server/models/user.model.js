@@ -15,12 +15,6 @@ const UserSchema = new mongoose.Schema({
         required: 'Email is required'
     },
     */
-    /*
-    created: {
-        type: Date,
-        default: Date.now
-    },
-    */
     usertype: {
         type: String,
         trim: true
@@ -32,8 +26,8 @@ const UserSchema = new mongoose.Schema({
     hashed_password: {
         type: String,
         required: 'Password is required'
-    }
-    //salt: String
+    },
+    salt: String
 });
 
 UserSchema.virtual('password')
@@ -56,5 +50,4 @@ UserSchema.path('hashed_password').validate(function(v) {
     }
 }, null);
 
-//module.exports = mongoose.model('User', UserSchema);
 export default mongoose.model('User', UserSchema);

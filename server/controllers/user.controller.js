@@ -81,12 +81,14 @@ const userByID = async (req, res, next, id) => {
 }
 
 const read = (req, res) => {
+    console.log("read user");
     req.profile.hashed_password = undefined 
     req.profile.salt = undefined
     return res.json(req.profile) 
 }
 
 const update = async (req, res) => { 
+    console.log("update user");
 try {
     let user = req.profile
     user = extend(user, req.body) 
@@ -103,6 +105,7 @@ try {
 }
 
 const remove = async (req, res) => { 
+    console.log("remove user");
     try {
         let user = req.profile
         let deletedUser = await user.deleteOne() 

@@ -8,11 +8,15 @@ const IncidentSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
+    status: {
+        type: String,
+        trim: true
+    },
     update_datetime: {
         type: Date,
         default: Date.now
-    }
-    //salt: String
+    },
+    salt: String
 });
 
 

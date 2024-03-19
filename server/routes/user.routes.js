@@ -13,6 +13,9 @@ router.route('/api/users/:userId').delete(userCtrl.remove)
 
 router.route('/api/incidents').post(incidentCtrl.create)
 router.route('/api/incidents').get(incidentCtrl.getAllIncidents)
-//router.param('incidentId', incidentCtrl.incidentByID)
+router.param('incidentId', incidentCtrl.incidentByID)
+router.route('/api/incidents/:incidentId').get(incidentCtrl.read)
+router.route('/api/incidents/:incidentId').put(incidentCtrl.update)
+router.route('/api/incidents/:incidentId').delete(incidentCtrl.remove)
 
 export default router
