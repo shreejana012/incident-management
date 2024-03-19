@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
 //const mongoose = require('mongoose');
 const UserSchema = new mongoose.Schema({
-    name: {
+    username: {
         type: String,
         trim: true,
         required: 'Name is required'
     },
+    /*
     email: {
         type: String,
         trim: true,
@@ -13,19 +14,26 @@ const UserSchema = new mongoose.Schema({
         match: [/.+\@.+\..+/, 'Please fill a valid email address'],
         required: 'Email is required'
     },
+    */
+    /*
     created: {
         type: Date,
         default: Date.now
     },
-    updated: {
+    */
+    usertype: {
+        type: String,
+        trim: true
+    },
+    update_datetime: {
         type: Date,
         default: Date.now
     },
     hashed_password: {
         type: String,
         required: 'Password is required'
-    },
-    salt: String
+    }
+    //salt: String
 });
 
 UserSchema.virtual('password')

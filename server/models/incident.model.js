@@ -1,22 +1,18 @@
 import mongoose from 'mongoose'
 const IncidentSchema = new mongoose.Schema({
-    name: {
+    incidenttype: {
         type: String,
-        trim: true,
-        required: 'Name is required'
+        trim: true
     },
-
-    created: {
+    description: {
+        type: String,
+        trim: true
+    },
+    update_datetime: {
         type: Date,
         default: Date.now
-    },
-
-    updated: {
-        type: Date,
-        default: Date.now
-    },
-
-    salt: String
+    }
+    //salt: String
 });
 
 
