@@ -10,7 +10,9 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 
 const isActive = (location, path) => {
-  return location.pathname === path ? { color: '#ff4081' } : { color: '#ffffff' };
+  // return location.pathname === path ? { color: '#ff4081' } : { color: '#ffffff' };
+  // color of menu
+  return location.pathname === path ? { color: '#ff9900' } : { color: '#eeeeee' };
 };
 export default function Menu(){ 
   const navigate = useNavigate();

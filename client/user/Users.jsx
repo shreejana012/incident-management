@@ -15,13 +15,12 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import IconButton from '@material-ui/core/IconButton'
 import Avatar from '@material-ui/core/Avatar'
 //import Person from '@material-ui/core/Person'
-//import ArrowForward from '@material-ui/core/ArrowForward'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
-//import ArrowForward from '@material-ui/core/ArrowForward'
 import ArrowForward from '@material-ui/icons/ArrowForward';
-import unicornbikeImg from './../assets/images/unicornbikeImg.jpg'
+import unicornbikeImg from './../assets/images/TeamLogo.png';
+
 const useStyles = makeStyles(theme => ({
  card: {
  // Define your card styles here

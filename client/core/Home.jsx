@@ -4,7 +4,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
-import unicornbikeImg from './../assets/images/unicornbikeImg.jpg';
+import TeamLogo from './../assets/images/TeamLogo.png';
 
 const useStyles = makeStyles(theme => ({
  card: {
@@ -20,20 +20,21 @@ const useStyles = makeStyles(theme => ({
  minHeight: 400,
  },
 }));
-export default function Home(){ 
-const classes = useStyles()
-return (
-<Card className={classes.card}>
 
- <Typography variant="h6" className={classes.title}>Home Page</Typography>
-<CardMedia className={classes.media}
-image={unicornbikeImg} title="Unicorn Bicycle"/>
-<CardContent>
-<Typography variant="body2" component="p"> 
-Welcome to the MERN Skeleton home page.
-</Typography> 
-</CardContent>
-</Card> 
-)
+export default function Home(){ 
+    const classes = useStyles()
+    const Style = { height: 500, width: 500};
+    return (
+        <Card className={classes.card}>
+
+        <Typography variant="h6" className={classes.title}>Incident Management</Typography>
+        <CardMedia className={classes.media} image={TeamLogo} title="Team Logo" style={Style}/>
+        <CardContent>
+            <Typography variant="body2" component="p"> 
+                Welcome to The Avengers Incident Management.
+            </Typography> 
+        </CardContent>
+        </Card> 
+    )
 }
 
