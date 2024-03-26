@@ -4,29 +4,22 @@ import mongoose from 'mongoose'
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoUri, { 
     //useNewUrlParser: true,
-    //useCreateIndex: true, 
-    //useUnifiedTopology: true
+//useCreateIndex: true, 
+//useUnifiedTopology: true
  } )
- .then(() => {
+.then(() => {
     console.log("Connected to the database!");
     })
-
-/*    
+    
 mongoose.connection.on('error', () => {
-    throw new Error(`unable to connect to database: ${config.mongoUri}`) 
+throw new Error(`unable to connect to database: ${config.mongoUri}`) 
 })
-*/
-mongoose.connection.on('error', function(err) {
-    throw new Error(`unable to connect to database: ${config.mongoUri}` + err) 
-})
-
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to User application." });
+res.json({ message: "Welcome to User application." });
 });
-
 app.listen(config.port, (err) => { 
-    if (err) {
-        console.log(err) 
-    }
-    console.info('Server started on port %s.', config.port) 
+if (err) {
+console.log(err) 
+}
+console.info('Server started on port %s.', config.port) 
 })
