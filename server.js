@@ -1,6 +1,8 @@
 import config from './config/config.js' 
 import app from './server/express.js'
 import mongoose from 'mongoose' 
+import cors from 'cors'
+
 mongoose.Promise = global.Promise
 mongoose.connect(config.mongoUri, { 
     //useNewUrlParser: true,
@@ -14,6 +16,8 @@ mongoose.connect(config.mongoUri, {
 mongoose.connection.on('error', () => {
 throw new Error(`unable to connect to database: ${config.mongoUri}`) 
 })
+
+//app.use(cors);
 app.get("/", (req, res) => {
 res.json({ message: "Welcome to User application." });
 });

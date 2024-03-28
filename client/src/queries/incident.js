@@ -15,6 +15,17 @@ export const fetchIncidents = async () => {
   }
 };
 
+export const fetchIncidents_Test = async () => { 
+  try {
+    let response = await fetch('/api/incidents/', { 
+    method: 'GET',
+  })
+  return await response.json() 
+  } catch(err) {
+    console.log(err) 
+  }
+  }
+
 export const createIncident = async (params) => {
   try {
     console.log("creating incident");
