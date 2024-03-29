@@ -1,9 +1,12 @@
 import React from 'react'
 import {useState} from 'react'
 import {useEffect} from 'react'
-import { Button } from "react-bootstrap";
-import { Link as RouterLink } from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles'
+import {Button} from "react-bootstrap";
+import {toast} from 'react-toastify';
+import {Link as RouterLink} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {makeStyles} from '@material-ui/core/styles'
 import Card from '@material-ui/core/Card'
 import Paper from '@material-ui/core/Paper'
 import List from '@material-ui/core/List'
@@ -27,7 +30,8 @@ import unicornbikeImg from './../assets/images/TeamLogo.png'
 import ConfirmationModal from "../src/components/ConfirmationModal";
 import IncidentModal from "../src/components/IncidentModal";
 import IncidentTable from "../src/components/IncidentTable";
-import { createIncident, deleteIncident, editIncident, fetchIncidents, fetchIncidents_Test } from "../src/queries/incident";
+import { createIncident, deleteIncident, editIncident, fetchIncidents } from "../src/queries/incident";
+import { createIncidentEx, deleteIncidentEx, editIncidentEx, fetchIncidentsEx } from "../src/queries/incident";
 
 const useStyles = makeStyles(theme => ({
     card: {
@@ -78,9 +82,12 @@ const [editingIncident, setEditingIncident] = useState(null);
 const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 const [incidentToDelete, setIncidentToDelete] = useState(null);
 
-const { data: incidents, error, isLoading } = useQuery({ queryKey: ['incidents'], queryFn: fetchIncidents });
-//const { data: incidents, error, isLoading } = useQuery({ queryKey: ['incidents'], queryFn: fetchIncidents_Test });
+//const { data: incidents, error, isLoading } = useQuery({ queryKey: ['incidents'], queryFn: fetchIncidents });
+const { data: incidents, error, isLoading } = useQuery({ 
+        queryKey: ['incidents'], queryFn: fetchIncidentsEx 
+    });
 
+/*    
 const editIncidentMutation = useMutation({
     mutationFn: editIncident,
     onSuccess: () => {
@@ -88,7 +95,17 @@ const editIncidentMutation = useMutation({
       toast.success('Incident successfully edited!');
     }
   });
+*/
+const editIncidentMutation = useMutation({
+    mutationFn: editIncidentEx,
+    onSuccess: () => {
+      queryClient.invalidateQueries(['incidents']);
+      toast.success('Incident successfully edited!');
+    }
+  });
 
+
+/*  
 const deleteIncidentMutation = useMutation({
     mutationFn: deleteIncident,
     onSuccess: () => {
@@ -96,7 +113,17 @@ const deleteIncidentMutation = useMutation({
         toast.success('Incident successfully deleted!');
     }
 });
+*/
+const deleteIncidentMutation = useMutation({
+    mutationFn: deleteIncidentEx,
+    onSuccess: () => {
+        queryClient.invalidateQueries(['incidents']);
+        toast.success('Incident successfully deleted!');
+    }
+});
 
+
+/*
 const addIncidentMutation = useMutation({
     mutationFn: createIncident,
     onSuccess: () => {
@@ -104,6 +131,16 @@ const addIncidentMutation = useMutation({
         toast.success('Incident successfully added!');
     }
 });
+*/
+
+const addIncidentMutation = useMutation({
+    mutationFn: createIncidentEx,
+    onSuccess: () => {
+        queryClient.invalidateQueries(['incidents']);
+        toast.success('Incident successfully added!');
+    }
+});
+
 
 if (isLoading) return <div>Loading...</div>;
 if (error) return <div>An error occurred: {error.message}</div>;
@@ -143,10 +180,7 @@ const confirmDelete = () => {
 
 return (
     <div>
-        <Typography variant="h6" className={classes.title}> 
-            To Do: Replace this page with Incident Management
-        </Typography> 
-
+        <ToastContainer />
         <div className="d-flex justify-content-end mb-3">
             <Button variant="success" onClick={() => setShowModal(true)}>Add New Incident</Button>
         </div>

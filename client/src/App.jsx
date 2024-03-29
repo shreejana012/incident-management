@@ -1,16 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from '@material-ui/styles';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import MainRouter from '../MainRouter';
 import theme from '../theme';
 //import { hot } from 'react-hot-loader'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const queryClient = new QueryClient()
 
 const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
+            <ToastContainer />
             <Router>
                 <ThemeProvider theme={theme}>
                     <MainRouter />

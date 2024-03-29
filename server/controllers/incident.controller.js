@@ -72,13 +72,13 @@ const incidentByID = async (req, res, next, id) => {
         let incident = await Incident.findById(id)
 
         if (!incident)
-            return res.status('400').json({
+            return res.status(400).json({
                 error: "Incident not found"
             })
         req.profile = incident
         next()
     } catch (err) {
-        return res.status('400').json({
+        return res.status(400).json({
             error: "Could not retrieve incident."
         })
     }
