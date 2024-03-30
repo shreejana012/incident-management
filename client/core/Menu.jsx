@@ -14,52 +14,52 @@ const isActive = (location, path) => {
   // color of menu
   return location.pathname === path ? { color: '#ff9900' } : { color: '#eeeeee' };
 };
-export default function Menu(){ 
+export default function Menu () {
   const navigate = useNavigate();
   const location = useLocation();
 
   return (
-  <AppBar position="static">
-    <Toolbar>
-      <Typography variant="h6" color="inherit">
-        The Avengers Incident Managements
-      </Typography>
-      <Link to="/">
-        <IconButton aria-label="Home" style={isActive(location, "/")}>
-          <HomeIcon/>
-        </IconButton>
-      </Link>
-      <Link to="/users">
-        <Button style={isActive(location, "/users")}>Users</Button>
-      </Link>
-      {
-        !auth.isAuthenticated() && (<span>
-          <Link to="/signup">
-            <Button style={isActive(location, "/signup")}>Sign up
-            </Button>
-          </Link>
-          <Link to="/signin">
-            <Button style={isActive(location, "/signin")}>Sign In
-            </Button>
-          </Link>
-        </span>)
-      }
-      {
-        auth.isAuthenticated() && (<span>
-          <Link to={"/user/" + auth.isAuthenticated().user._id}>
-            <Button style={isActive(location, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
-          </Link>
-          <Link to="/incidentmanagement">
-            <Button style={isActive(location, "/incidentmanagement")}>Incident Management</Button>
-          </Link>
-          <Button color="inherit" onClick={() => {
-               auth.clearJWT(() => navigate('/'));
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" color="inherit">
+          The Avengers Incident Managements
+        </Typography>
+        <Link to="/">
+          <IconButton aria-label="Home" style={isActive(location, "/")}>
+            <HomeIcon />
+          </IconButton>
+        </Link>
+        <Link to="/users">
+          <Button style={isActive(location, "/users")}>Users</Button>
+        </Link>
+        {
+          !auth.isAuthenticated() && (<span>
+            <Link to="/signup">
+              <Button style={isActive(location, "/signup")}>Sign up
+              </Button>
+            </Link>
+            <Link to="/signin">
+              <Button style={isActive(location, "/signin")}>Sign In
+              </Button>
+            </Link>
+          </span>)
+        }
+        {
+          auth.isAuthenticated() && (<span>
+            <Link to={"/user/" + auth.isAuthenticated().user._id}>
+              <Button style={isActive(location, "/user/" + auth.isAuthenticated().user._id)}>My Profile</Button>
+            </Link>
+            <Link to="/incidents">
+              <Button style={isActive(location, "/incidents")}>Incident Management</Button>
+            </Link>
+            <Button color="inherit" onClick={() => {
+              auth.clearJWT(() => navigate('/'));
             }}>Sign out</Button>
-        </span>)
-      }
-    </Toolbar>
-  </AppBar>
-);
+          </span>)
+        }
+      </Toolbar>
+    </AppBar>
+  );
 }
 
 

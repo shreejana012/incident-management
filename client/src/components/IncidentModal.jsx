@@ -1,6 +1,7 @@
 import { Modal, Button, Form } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 
+// eslint-disable-next-line react/prop-types
 function IncidentModal ({ show, handleClose, handleSave, currentIncident }) {
   const initialState = { incidenttype: '', description: '', status: '' };
   const [incident, setIncident] = useState(initialState);

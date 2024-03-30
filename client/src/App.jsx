@@ -4,10 +4,10 @@ import { ThemeProvider } from '@material-ui/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import MainRouter from '../MainRouter';
 import theme from '../theme';
-//import { hot } from 'react-hot-loader'
 
 const queryClient = new QueryClient()
 
@@ -20,7 +20,7 @@ const App = () => {
                     <MainRouter />
                 </ThemeProvider>
             </Router>
-        </QueryClientProvider>            
+        </QueryClientProvider>
     );
 };
 

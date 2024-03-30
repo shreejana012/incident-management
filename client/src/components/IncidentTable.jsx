@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Table, Button } from 'react-bootstrap';
 import { formatDistanceToNow } from 'date-fns';
 

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Modal, Button } from 'react-bootstrap';
 
 function ConfirmationModal ({ show, handleClose, handleConfirm, message }) {

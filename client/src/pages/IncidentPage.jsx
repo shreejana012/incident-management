@@ -7,7 +7,7 @@ import ConfirmationModal from "../components/ConfirmationModal";
 import { Button } from "react-bootstrap";
 import { toast } from 'react-toastify';
 
-const HomePage = () => {
+const IncidentPage = () => {
 
   const queryClient = useQueryClient();
 
@@ -85,7 +85,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <div className="d-flex justify-content-end mb-3">
+      <div className="d-flex justify-content-end mb-3 mt-3">
         <Button variant="success" onClick={() => setShowModal(true)}>Add New Incident</Button>
       </div>
 
@@ -112,4 +112,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage;
+export default IncidentPage;
