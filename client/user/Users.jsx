@@ -14,12 +14,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import IconButton from '@material-ui/core/IconButton'
 import Avatar from '@material-ui/core/Avatar'
-//import Person from '@material-ui/core/Person'
 import CardContent from '@material-ui/core/CardContent'
 import CardMedia from '@material-ui/core/CardMedia'
 import Typography from '@material-ui/core/Typography'
 import ArrowForward from '@material-ui/icons/ArrowForward';
-import unicornbikeImg from './../assets/images/TeamLogo.png';
+
 
 const useStyles = makeStyles(theme => ({
   card: {
