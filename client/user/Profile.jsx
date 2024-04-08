@@ -56,7 +56,6 @@ export default function Profile ({ match }) {
 
   if (redirectToSignin) {
     return <Navigate to="/signin" state={{ from: location.pathname }} replace />;
-
   }
   if (auth.isAuthenticated()) {
     console.log(auth.isAuthenticated().user._id)

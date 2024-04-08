@@ -9,6 +9,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import MainRouter from '../MainRouter';
 import theme from '../theme';
 
+console.log("<App.jsx>");
+
 const queryClient = new QueryClient()
 
 const App = () => {
