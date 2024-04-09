@@ -14,7 +14,7 @@ const CURRENT_WORKING_DIR = process.cwd()
 /*app.get('/', (req, res) => {
  res.status(200).send(Template()) 
  })*/
-
+app.use(cors());
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -25,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(compress())
 app.use(helmet())
-//app.use(cors())
 
 // const whitelist = ['http://localhost:4173', 'https://incident-management.netlify.app'];
 // const corsOptions = {
@@ -42,12 +41,24 @@ app.use(helmet())
 //   }
 // }
 
-app.use(cors());
 
-app.use((err, req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://incident-management.netlify.app"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Authorization, X-Content-Type-Options, Accept, X-Requested-With, Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", true);
+  res.setHeader("Access-Control-Allow-Private-Network", true);
+  res.setHeader("Access-Control-Max-Age", 7200);
 
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({ "error": err.name + ": " + err.message })
@@ -55,8 +66,10 @@ app.use((err, req, res, next) => {
     res.status(400).json({ "error": err.name + ": " + err.message })
     console.log(err)
   }
+
   next();
-})
+});
+
 
 export default app
 
