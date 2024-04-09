@@ -27,31 +27,36 @@ app.use(compress())
 app.use(helmet())
 //app.use(cors())
 
-const whitelist = ['http://localhost:4173', 'https://incident-management.netlify.app'];
-const corsOptions = {
-  credentials: true, // This is important.
-  origin: (origin, callback) => {
-    return callback(null, true)
-    if (whitelist.includes(origin))
-      return callback(null, true)
+// const whitelist = ['http://localhost:4173', 'https://incident-management.netlify.app'];
+// const corsOptions = {
+//   credentials: true, // This is important.
+//   origin: (origin, callback) => {
+//     return callback(null, true)
+//     if (whitelist.includes(origin))
+//       return callback(null, true)
 
 
-    callback(new Error('whitelist:' + whitelist));
-    callback(new Error('origin:' + origin));
-    callback(new Error('Not allowed by CORS'));
-  }
-}
-app.use(cors(corsOptions));
+//     callback(new Error('whitelist:' + whitelist));
+//     callback(new Error('origin:' + origin));
+//     callback(new Error('Not allowed by CORS'));
+//   }
+// }
+
+app.use(cors());
 
 app.use((err, req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({ "error": err.name + ": " + err.message })
   } else if (err) {
     res.status(400).json({ "error": err.name + ": " + err.message })
     console.log(err)
   }
+  next();
 })
-
 
 export default app
 
