@@ -10,11 +10,11 @@ import authRoutes from './routes/auth.routes.js'
 import path from 'path'
 const app = express()
 const CURRENT_WORKING_DIR = process.cwd()
- 
+
 /*app.get('/', (req, res) => {
  res.status(200).send(Template()) 
  })*/
- 
+
 app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -27,31 +27,31 @@ app.use(compress())
 app.use(helmet())
 //app.use(cors())
 
-const whitelist = ['http://localhost:4173', 'http://example2.com'];
+const whitelist = ['http://localhost:4173', 'https://incident-management.netlify.app'];
 const corsOptions = {
   credentials: true, // This is important.
   origin: (origin, callback) => {
-	return callback(null, true)
-    if(whitelist.includes(origin))
+    return callback(null, true)
+    if (whitelist.includes(origin))
       return callback(null, true)
 
-    
-	callback(new Error('whitelist:' + whitelist));
-	callback(new Error('origin:' + origin));
+
+    callback(new Error('whitelist:' + whitelist));
+    callback(new Error('origin:' + origin));
     callback(new Error('Not allowed by CORS'));
   }
 }
 app.use(cors(corsOptions));
 
 app.use((err, req, res, next) => {
- if (err.name === 'UnauthorizedError') {
- res.status(401).json({"error" : err.name + ": " + err.message}) 
- }else if (err) {
- res.status(400).json({"error" : err.name + ": " + err.message}) 
- console.log(err)
- } 
- })
- 
- 
+  if (err.name === 'UnauthorizedError') {
+    res.status(401).json({ "error": err.name + ": " + err.message })
+  } else if (err) {
+    res.status(400).json({ "error": err.name + ": " + err.message })
+    console.log(err)
+  }
+})
+
+
 export default app
 
